@@ -11,11 +11,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+from dotenv import load_dotenv
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+load_dotenv()
+mysql_password = os.environ.get("MYSQL_PASSWORD")
+mysql_database_name = os.environ.get("MYSQL_DATABASE_NAME")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -36,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'canteen',
+    'order',
     'django.contrib.staticfiles',
 ]
 
@@ -74,10 +79,14 @@ WSGI_APPLICATION = 'canteen_ordering_sys.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+	'default': {
+		'ENGINE': 'django.db.backends.mysql',
+		'NAME': mysql_database_name,
+		'USER': 'root',
+		'PASSWORD': mysql_password,#your password
+		'HOST':'localhost',
+		'PORT':'3306',
+	}
 }
 
 

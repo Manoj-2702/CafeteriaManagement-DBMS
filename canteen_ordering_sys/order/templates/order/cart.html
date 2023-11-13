@@ -1,5 +1,6 @@
-{% extends 'base/base.html' %} {% block title %}Your Cart{% endblock title %} {%
-block maincontent %} {% if cartitems %}
+{% extends 'base/base.html' %} 
+{% block title %}Your Cart{% endblock title %} 
+{% block maincontent %} {% if cartitems %}
 <div class="row border rounded-5 border-primary m-5 p-5">
   <div class="col-md-8">
     {% for item in cartitems %}
@@ -122,13 +123,14 @@ block maincontent %} {% if cartitems %}
 <div id="os"></div>
 {% else %}
 <h1 class="alert alert-info text-center mt-5">Your Cart is Empty</h1>
-{% endif %} {% endblock maincontent %} {% block payment-gateway %}
+{% endif %} 
+{% endblock maincontent %} 
+{% block payment-gateway %}
 <script src="https://www.paypal.com/sdk/js?client-id=AdstVdkXtBT7eFeAKT1PuFTYmnm3a9HgAeyqXiJtxNKFQJav05K7ljkgv6e1EbefJo_crAAgYXsElPcf&currency=USD"></script>
 
 <script>
   // Render the PayPal button into #paypal-button-container
-  paypal
-    .Buttons({
+  paypal.Buttons({
       // Set up the transaction
       createOrder: function (data, actions) {
         return actions.order.create({
